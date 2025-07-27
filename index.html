@@ -24,14 +24,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
       user-select: none; /* prevent text selection */
+
+      /* Removed cursor: pointer from body */
     }
 
     #container {
       display: flex;
       align-items: center; /* vertically center brackets and email */
       gap: 0; /* spacing controlled with margins */
+      cursor: pointer; /* pointer cursor only here */
     }
 
     .bracket {
@@ -53,13 +55,13 @@
       justify-content: center;
       height: 1em;          /* match bracket height */
       transition: width 0.2s ease, margin 0.2s ease, transform 0.2s ease;
-      transform: translateY(0.4rem); /* default no vertical shift */
+      transform: translateY(0); /* default no vertical shift */
     }
 
     #container.open #email {
       width: auto;
       margin: 0 0.2em;  /* gap between email and brackets */
-      transform: translateY(0.4rem); /* move text down by about one third of font size */
+      transform: translateY(0.83rem); /* move text down by about one third of font size */
     }
   </style>
 </head>
