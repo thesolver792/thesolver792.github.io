@@ -7,8 +7,8 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     body {
-      background: #000;           /* Black background */
-      color: #fff;                /* White text */
+      background: #000;           
+      color: #fff;                
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,28 +18,35 @@
       font-size: 5rem;
       cursor: pointer;
     }
+
     #container {
       display: flex;
       align-items: center;
       position: relative;
     }
+
     .bracket {
       transition: transform 0.5s ease;
     }
+
     #email {
       opacity: 0;
-      transition: opacity 0.5s ease;
       font-size: 1.5rem;
-      margin: 0 20px;
+      margin: 0 10px;   /* smaller initial gap (half of 20px) */
+      transition: opacity 0.5s ease, margin 0.5s ease;
     }
+
     #container.open .left {
       transform: translateX(-30px);
     }
+
     #container.open .right {
       transform: translateX(30px);
     }
+
     #container.open #email {
       opacity: 1;
+      margin: 0 5px;  /* half the gap between email and brackets */
     }
   </style>
 </head>
@@ -49,6 +56,7 @@
     <div id="email">request@thesolver.ch</div>
     <div class="bracket right">]</div>
   </div>
+
   <script>
     const container = document.getElementById("container");
     container.addEventListener("click", () => {
