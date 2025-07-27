@@ -13,50 +13,47 @@
     body {
       background: #000;
       color: #fff;
-      height: 100vh;
-      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
+      height: 100vh;
+      margin: 0;
       font-family: monospace;
       font-size: 5rem;
+      cursor: pointer;
     }
 
     #container {
       display: flex;
-      align-items: center; /* vertically center brackets and email */
-      gap: 0; /* no gap so we control spacing with margins */
+      align-items: baseline; /* changed from center */
+      position: relative;
     }
 
     .bracket {
-      line-height: 1; /* reduce extra vertical spacing */
+      font-family: monospace;
+      font-size: 2.5rem;
+      user-select: none;
+      line-height: 1;
     }
 
     #email {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      line-height: 1;
-      width: 5ch;           /* reserve space for 5 characters when closed */
+      font-family: 'Bebas Neue', sans-serif;  /* Use Bebas Neue */
+      font-size: 2.5rem;                      /* Larger so it's visible */
+      width: 5ch;                             /* exactly 5 monospace-like spaces when closed */
       text-align: center;
       overflow: hidden;
-      margin: 0 0;          /* no margin closed */
-      white-space: nowrap;  /* prevent wrapping */
-      display: flex;
-      align-items: center;  /* vertical centering inside the email div */
-      justify-content: center; /* horizontal centering inside email div */
-      height: 1em;          /* match bracket height */
-      transition: width 0.2s ease, margin 0.2s ease;
+      line-height: 1;
+      padding-top: 0.15em; /* tweak this slightly if needed */
     }
 
     #container.open #email {
       width: auto;
-      margin: 0 0.2em;  /* small horizontal gap between email and brackets */
+      margin: 0 5px;
     }
   </style>
 </head>
 <body>
-  <div id="container" aria-label="Contact Email">
+  <div id="container">
     <div class="bracket left">[</div>
     <div id="email">&nbsp;</div>
     <div class="bracket right">]</div>
