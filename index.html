@@ -13,38 +13,50 @@
     body {
       background: #000;
       color: #fff;
+      height: 100vh;
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      cursor: pointer;
       font-family: monospace;
       font-size: 5rem;
-      cursor: pointer;
     }
 
     #container {
       display: flex;
-      align-items: center;
-      position: relative;
+      align-items: center; /* vertically center brackets and email */
+      gap: 0; /* no gap so we control spacing with margins */
+    }
+
+    .bracket {
+      line-height: 1; /* reduce extra vertical spacing */
     }
 
     #email {
-      font-family: 'Bebas Neue', sans-serif;  /* Use Bebas Neue */
-      font-size: 2.5rem;                      /* Larger so it's visible */
-      width: 5ch;                             /* exactly 5 monospace-like spaces when closed */
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1;
+      width: 5ch;           /* reserve space for 5 characters when closed */
       text-align: center;
       overflow: hidden;
+      margin: 0 0;          /* no margin closed */
+      white-space: nowrap;  /* prevent wrapping */
+      display: flex;
+      align-items: center;  /* vertical centering inside the email div */
+      justify-content: center; /* horizontal centering inside email div */
+      height: 1em;          /* match bracket height */
+      transition: width 0.2s ease, margin 0.2s ease;
     }
 
     #container.open #email {
       width: auto;
-      margin: 0 5px;
+      margin: 0 0.2em;  /* small horizontal gap between email and brackets */
     }
   </style>
 </head>
 <body>
-  <div id="container">
+  <div id="container" aria-label="Contact Email">
     <div class="bracket left">[</div>
     <div id="email">&nbsp;</div>
     <div class="bracket right">]</div>
