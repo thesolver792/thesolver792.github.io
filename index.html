@@ -32,8 +32,9 @@
     #email {
       opacity: 0;
       font-size: 1.5rem;
-      margin: 0 10px;   /* smaller initial gap (half of 20px) */
-      transition: opacity 0.5s ease, margin 0.5s ease;
+      width: 5ch;   /* reserve space equal to 5 characters (ch = monospace width) */
+      text-align: center;
+      transition: opacity 0.5s ease, width 0.5s ease, margin 0.5s ease;
     }
 
     #container.open .left {
@@ -46,21 +47,31 @@
 
     #container.open #email {
       opacity: 1;
-      margin: 0 5px;  /* half the gap between email and brackets */
+      width: auto;   /* expand to fit email */
+      margin: 0 5px; /* small gap between email and brackets */
     }
   </style>
 </head>
 <body>
   <div id="container">
     <div class="bracket left">[</div>
-    <div id="email">request@thesolver.ch</div>
+    <div id="email">&nbsp;</div> <!-- initial placeholder -->
     <div class="bracket right">]</div>
   </div>
 
   <script>
     const container = document.getElementById("container");
+    const emailElement = document.getElementById("email");
+
+    const email = "request@thesolver.ch";
+
     container.addEventListener("click", () => {
       container.classList.toggle("open");
+      if (container.classList.contains("open")) {
+        emailElement.textContent = email;
+      } else {
+        emailElement.innerHTML = "&nbsp;"; // back to blank space
+      }
     });
   </script>
 </body>
