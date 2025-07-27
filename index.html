@@ -2,58 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact</title>
   <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- Load Bebas Neue -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
     body {
       background: #000;
       color: #fff;
+      font-family: monospace;
+      font-size: 5rem;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: monospace;
-      font-size: 5rem;
       cursor: pointer;
+      user-select: none; /* Optional: prevent text selection */
     }
 
     #container {
       display: flex;
-      align-items: baseline; /* changed from center */
-      position: relative;
+      align-items: center; /* vertically center brackets and email */
+      gap: 0; /* spacing controlled with margins */
     }
 
     .bracket {
-      font-family: monospace;
-      font-size: 2.5rem;
-      user-select: none;
       line-height: 1;
+      user-select: none;
     }
 
     #email {
-      font-family: 'Bebas Neue', sans-serif;  /* Use Bebas Neue */
-      font-size: 2.5rem;                      /* Larger so it's visible */
-      width: 5ch;                             /* exactly 5 monospace-like spaces when closed */
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1;
+      width: 5ch;           /* reserve space for 5 characters when closed */
       text-align: center;
       overflow: hidden;
-      line-height: 1;
-      padding-top: 0.15em; /* tweak this slightly if needed */
+      margin: 0;            /* no margin when closed */
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 1em;          /* match bracket height */
+      transition: width 0.2s ease, margin 0.2s ease;
     }
 
     #container.open #email {
       width: auto;
-      margin: 0 5px;
+      margin: 0 0.2em;  /* gap between email and brackets */
     }
   </style>
 </head>
 <body>
-  <div id="container">
+  <div id="container" aria-label="Contact Email" role="button" tabindex="0">
     <div class="bracket left">[</div>
     <div id="email">&nbsp;</div>
     <div class="bracket right">]</div>
@@ -71,6 +80,14 @@
       } else {
         container.classList.add("open");
         emailElement.textContent = email;
+      }
+    });
+
+    // Also allow keyboard accessibility (enter or space to toggle)
+    container.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        container.click();
       }
     });
   </script>
