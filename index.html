@@ -7,8 +7,8 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     body {
-      background: #000;           
-      color: #fff;                
+      background: #000;
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,52 +25,38 @@
       position: relative;
     }
 
-    .bracket {
-      transition: transform 0.5s ease;
-    }
-
     #email {
-      opacity: 0;
       font-size: 1.5rem;
-      width: 5ch;   /* reserve space equal to 5 characters (ch = monospace width) */
+      width: 5ch;      /* exactly 5 monospace characters */
       text-align: center;
-      transition: opacity 0.5s ease, width 0.5s ease, margin 0.5s ease;
-    }
-
-    #container.open .left {
-      transform: translateX(-30px);
-    }
-
-    #container.open .right {
-      transform: translateX(30px);
+      overflow: hidden;
     }
 
     #container.open #email {
-      opacity: 1;
-      width: auto;   /* expand to fit email */
-      margin: 0 5px; /* small gap between email and brackets */
+      width: auto;
+      margin: 0 5px;
     }
   </style>
 </head>
 <body>
   <div id="container">
     <div class="bracket left">[</div>
-    <div id="email">&nbsp;</div> <!-- initial placeholder -->
+    <div id="email">&nbsp;</div>
     <div class="bracket right">]</div>
   </div>
 
   <script>
     const container = document.getElementById("container");
     const emailElement = document.getElementById("email");
-
     const email = "request@thesolver.ch";
 
     container.addEventListener("click", () => {
-      container.classList.toggle("open");
       if (container.classList.contains("open")) {
-        emailElement.textContent = email;
+        container.classList.remove("open");
+        emailElement.innerHTML = "&nbsp;";
       } else {
-        emailElement.innerHTML = "&nbsp;"; // back to blank space
+        container.classList.add("open");
+        emailElement.textContent = email;
       }
     });
   </script>
