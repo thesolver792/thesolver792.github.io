@@ -25,7 +25,7 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      user-select: none; /* Optional: prevent text selection */
+      user-select: none; /* prevent text selection */
     }
 
     #container {
@@ -52,12 +52,14 @@
       align-items: center;
       justify-content: center;
       height: 1em;          /* match bracket height */
-      transition: width 0.2s ease, margin 0.2s ease;
+      transition: width 0.2s ease, margin 0.2s ease, transform 0.2s ease;
+      transform: translateY(0); /* default no vertical shift */
     }
 
     #container.open #email {
       width: auto;
       margin: 0 0.2em;  /* gap between email and brackets */
+      transform: translateY(0.83rem); /* move text down by about one third of font size */
     }
   </style>
 </head>
@@ -83,7 +85,7 @@
       }
     });
 
-    // Also allow keyboard accessibility (enter or space to toggle)
+    // Keyboard accessibility: toggle on Enter or Space
     container.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
